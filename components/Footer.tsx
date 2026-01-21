@@ -28,18 +28,43 @@ export const Footer: React.FC = () => {
               <li>info@chingoncuhts.com</li>
             </ul>
             <div className="flex gap-4 mt-8">
-               {/* Mock social icons */}
-              {['IG', 'FB', 'WPP'].map(label => (
-                <div key={label} className="w-10 h-10 rounded-full bg-white/5 border border-white/10 grid place-items-center hover:bg-neon hover:text-black transition-colors cursor-pointer">
-                  <span className="text-[10px] font-bold">{label}</span>
-                </div>
-              ))}
+             <div className="flex gap-4 mt-8">
+  {/* INSTAGRAM */}
+  <a 
+    href="https://www.instagram.com/chingoncuhts" 
+    target="_blank" 
+    rel="noopener noreferrer"
+    className="w-10 h-10 rounded-full bg-white/5 border border-white/10 grid place-items-center hover:bg-neon hover:text-black transition-colors cursor-pointer"
+  >
+    <span className="text-[10px] font-bold">IG</span>
+  </a>
+
+  {/* FACEBOOK */}
+  <a 
+    href="https://www.facebook.com/chingoncuhts" 
+    target="_blank" 
+    rel="noopener noreferrer"
+    className="w-10 h-10 rounded-full bg-white/5 border border-white/10 grid place-items-center hover:bg-neon hover:text-black transition-colors cursor-pointer"
+  >
+    <span className="text-[10px] font-bold">FB</span>
+  </a>
+
+  {/* WHATSAPP */}
+  <a 
+    href="https://wa.me/19155550123?text=Hola,%20quisiera%20agendar%20una%20cita%20en%20Chingon%20Cuhts" 
+    target="_blank" 
+    rel="noopener noreferrer"
+    className="w-10 h-10 rounded-full bg-white/5 border border-white/10 grid place-items-center hover:bg-neon hover:text-black transition-colors cursor-pointer"
+  >
+    <span className="text-[10px] font-bold">WPP</span>
+  </a>
+</div>
             </div>
           </div>
         </div>
 
         <div className="pt-10 border-t border-white/5 text-center text-muted2 text-xs">
-          <p>© 2024 CHINGON CUHT'S BARBER SHOP. ALL RIGHTS RESERVED. BEYOND CLEAN.</p>
+          <p>© 2026 CHINGON CUHT'S BARBER SHOP. ALL RIGHTS RESERVED. BEYOND CLEAN.</p>
         </div>
       </div>
     </footer>
