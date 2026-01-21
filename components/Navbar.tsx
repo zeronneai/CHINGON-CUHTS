@@ -24,7 +24,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
             </svg>
           </div>
           <div className="leading-tight">
-            <span className="font-display text-lg uppercase tracking-wider block">CHINGON CUHTS</span>
+            <span className="font-brand text-2xl text-white block drop-shadow-[0_0_8px_rgba(57,255,20,0.45)] leading-none mb-0.5">Chingon Cuhts</span>
             <span className="text-[10px] text-muted uppercase tracking-[0.2em]">Socorro, TX</span>
           </div>
         </div>

@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 interface HeroProps {
@@ -59,7 +58,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking }) => {
       <div className="absolute top-1/2 right-0 -translate-y-1/2 w-1/2 h-full hidden lg:block pointer-events-none">
         <div className="relative w-full h-full">
            <img 
-            src="https://i.imgur.com/8Y1hgUU.png" 
+            src="https://res.cloudinary.com/dsprn0ew4/image/upload/v1769029959/BARBER_kevfkk.jpg" 
             alt="Barber Shop Interior" 
             className="w-full h-full object-cover rounded-l-[100px] border-l border-y border-white/10 opacity-60 mix-blend-screen grayscale"
           />
