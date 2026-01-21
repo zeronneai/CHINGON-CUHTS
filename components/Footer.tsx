@@ -16,20 +16,20 @@ export const Footer: React.FC = () => {
               <span className="font-display text-2xl uppercase tracking-wider">CHINGON CUHTS</span>
             </div>
             <p className="text-muted leading-relaxed max-w-sm">
-              La barbería más perrona de Socorro, TX. Donde el estilo se encuentra con la precisión.
+              La barbería más perrona de El Paso, TX. Donde el estilo se encuentra con la precisión.
             </p>
           </div>
 
           <div>
             <h4 className="font-display text-lg mb-6 uppercase tracking-widest">Contacto</h4>
             <ul className="space-y-3 text-muted">
-              <li>Socorro, Texas 79927</li>
+              <li>EL Paso, Texas 79927</li>
               <li className="text-white font-bold">(915) 555-0123</li>
               <li>info@chingoncuhts.com</li>
             </ul>
             <div className="flex gap-4 mt-8">
                {/* Mock social icons */}
-              {['IG', 'FB', 'TK'].map(label => (
+              {['IG', 'FB', 'WPP'].map(label => (
                 <div key={label} className="w-10 h-10 rounded-full bg-white/5 border border-white/10 grid place-items-center hover:bg-neon hover:text-black transition-colors cursor-pointer">
                   <span className="text-[10px] font-bold">{label}</span>
                 </div>
