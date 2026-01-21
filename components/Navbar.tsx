@@ -25,7 +25,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
           </div>
           <div className="leading-tight">
             <span className="font-display text-lg uppercase tracking-wider block">CHINGON CUHTS</span>
-            <span className="text-[10px] text-muted uppercase tracking-[0.2em]">Socorro, TX</span>
+            <span className="text-[10px] text-muted uppercase tracking-[0.2em]">El Paso, TX</span>
           </div>
         </div>
 
