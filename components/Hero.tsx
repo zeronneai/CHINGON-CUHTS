@@ -15,21 +15,21 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking }) => {
   return (
     <section className="relative pt-32 pb-20 px-4 overflow-hidden">
       <div className="max-w-[1180px] mx-auto relative z-10">
-        <div className="max-w-2xl">
+        <div className="max-w-2xl mx-auto lg:mx-0 flex flex-col items-center lg:items-start text-center lg:text-left">
           <div className="mb-4">
-            <h1 className="font-display text-6xl md:text-8xl text-white uppercase italic tracking-tighter leading-none">
+           <h1 className="font-display text-6xl md:text-8xl text-white uppercase italic tracking-tighter leading-none text-center lg:text-left">
               OPEN <span className="text-neon">7</span> DAYS
             </h1>
           </div>
           
           <img 
-            className="hero-logo mb-8 h-auto w-full max-w-[280px] md:max-w-[360px] lg:max-w-[460px]" 
+           className="hero-logo mb-8 h-auto w-full max-w-[280px] md:max-w-[360px] lg:max-w-[460px] mx-auto lg:mx-0"
             src="https://i.imgur.com/xwNC6AC.png" 
             alt="CHINGON CUHTS logo" 
           />
           
           <p className="text-muted text-lg md:text-xl max-w-lg mb-12">
-            Elevando el estándar en Socorro. Fades limpios, tapers precisos y diseño de barba con la mejor vibra de Texas.
+            Elevando el estándar en El Paso. Fades limpios, tapers precisos y diseño de barba con la mejor vibra de Texas.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 items-start">
