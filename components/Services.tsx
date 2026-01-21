@@ -15,12 +15,12 @@ interface ServicesProps {
 export const Services: React.FC<ServicesProps> = ({ onSelectService }) => {
   return (
     <div className="max-w-[1180px] mx-auto px-4">
-      <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-4">
-        <div>
+      <div className="flex flex-col md:flex-row justify-between items-center md:items-end text-center md:text-left mb-16 gap-6">
+        <div className="mx-auto md:mx-0">
           <h2 className="font-display text-5xl md:text-6xl uppercase tracking-widest text-white mb-2">Servicios</h2>
           <p className="text-muted">Calidad inigualable en cada corte.</p>
         </div>
-        <div className="text-right">
+        <div className="text-center md:text-right">
           <span className="font-display text-neon text-2xl">LISTA DE PRECIOS 2026</span>
         </div>
       </div>
