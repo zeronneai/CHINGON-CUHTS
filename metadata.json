@@ -1,0 +1,7 @@
+{
+  "name": "C.CHINGON CUHT'S —  Barber Shop",
+  "description": "A high-end, neon-aesthetic landing page for CHINGON CUHT'S Barber Shop in Socorro, TX, featuring AI-powered style consultations.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
