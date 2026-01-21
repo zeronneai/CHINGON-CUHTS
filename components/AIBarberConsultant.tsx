@@ -14,7 +14,7 @@ export const AIBarberConsultant: React.FC = () => {
     setResponse('');
     
     try {
-      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+      const ai = new GoogleGenerativeAI(import.meta.env.VITE_GOOGLE_API_KEY);
       const result = await ai.models.generateContent({
         model: 'gemini-3-flash-preview',
         contents: `Eres un barbero experto de "CHINGON CUHT'S". Un cliente te pregunta: "${prompt}". 
