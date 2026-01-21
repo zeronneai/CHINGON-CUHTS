@@ -78,7 +78,7 @@ const App: React.FC = () => {
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="font-display text-4xl mb-8 uppercase tracking-widest text-neon">Ubicación</h2>
             <div className="rounded-[28px] overflow-hidden neon-border bg-card p-8 shadow-2xl">
-              <p className="text-2xl font-bold mb-4">Socorro, Texas</p>
+              <p className="text-2xl font-bold mb-4">El Paso, Texas</p>
               <p className="text-muted text-lg mb-8">El mejor servicio de barbería en el área. Elevando el estilo de nuestra comunidad.</p>
               <div className="aspect-video w-full rounded-2xl bg-black/40 flex items-center justify-center border border-white/5">
                 <span className="text-muted italic">Google Maps Integration Coming Soon...</span>
