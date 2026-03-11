@@ -56,12 +56,13 @@ export const AIBarberConsultant: React.FC = () => {
     if (videoRef.current && canvasRef.current) {
       const video = videoRef.current;
       const canvas = canvasRef.current;
-      canvas.width = video.videoWidth;
-      canvas.height = video.videoHeight;
+      // Forzar tamaño a 640x480 para evitar saturar la API con imágenes pesadas
+      canvas.width = 640;
+      canvas.height = 480;
       const context = canvas.getContext('2d');
       if (context) {
         context.drawImage(video, 0, 0, canvas.width, canvas.height);
-        const imageData = canvas.toDataURL('image/jpeg');
+        const imageData = canvas.toDataURL('image/jpeg', 0.8); // Calidad 0.8 para reducir peso
         setCapturedImage(imageData);
         stopCamera();
       }
@@ -80,6 +81,13 @@ export const AIBarberConsultant: React.FC = () => {
 
       if (capturedImage) {
         const base64Data = capturedImage.split(',')[1];
+        
+        if (!base64Data || base64Data.length === 0) {
+          setError("La imagen no se capturó correctamente. Intenta tomar la foto de nuevo, carnal.");
+          setLoading(false);
+          return;
+        }
+
         contents = {
           parts: [
             {
@@ -132,11 +140,10 @@ export const AIBarberConsultant: React.FC = () => {
           Tu misión es analizar fotos de clientes y dar 3 recomendaciones de cortes.
           
           REGLAS CRÍTICAS:
-          1. Responde ÚNICAMENTE con el objeto JSON solicitado.
-          2. NO incluyas bloques de código Markdown (\`\`\`json).
-          3. NO incluyas texto antes o después del JSON.
-          4. Usa Spanglish urbano de Socorro, Texas en las explicaciones.
-          5. Si no hay foto, basa tus recomendaciones en el texto del cliente.`
+          Responde ÚNICAMENTE con el objeto JSON puro. Está prohibido incluir texto antes o después del JSON. No uses bloques de código con comillas (\`\`\`json). Solo el objeto {}.
+          
+          Usa Spanglish urbano de Socorro, Texas en las explicaciones.
+          Si no hay foto, basa tus recomendaciones en el texto del cliente.`
         }
       });
       
@@ -149,12 +156,14 @@ export const AIBarberConsultant: React.FC = () => {
       setAiData(parsedResponse);
     } catch (err: any) {
       console.error("Gemini Error:", err);
-      if (err.message?.includes("429")) {
-        setError("Carnal, la IA está a full ahorita. Espérate un minuto y dale otra vez.");
-      } else if (err.message?.includes("JSON")) {
-        setError("Hubo un error al procesar la respuesta. Intenta de nuevo, porfa.");
+      const errorMessage = err.message || "Error desconocido";
+      
+      if (errorMessage.includes("429")) {
+        setError("Carnal, la IA está a full ahorita (Error 429). Espérate un minuto y dale otra vez.");
+      } else if (errorMessage.includes("JSON")) {
+        setError(`Error al procesar la respuesta: ${errorMessage}`);
       } else {
-        setError("Ocurrió un error inesperado. Revisa tu conexión o intenta más tarde.");
+        setError(`Error Inesperado: ${errorMessage}. Revisa tu conexión o intenta más tarde.`);
       }
     } finally {
       setLoading(false);
