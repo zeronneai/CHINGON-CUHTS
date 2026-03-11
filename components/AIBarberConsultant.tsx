@@ -89,7 +89,7 @@ export const AIBarberConsultant: React.FC = () => {
               }
             },
             {
-              text: `Analiza mi rostro en esta foto. ${prompt ? `Además, considera esto: ${prompt}` : ''}`
+              text: `Analiza mi rostro en esta foto. ${prompt ? `Contexto adicional: ${prompt}` : ''}`
             }
           ]
         };
@@ -110,38 +110,52 @@ export const AIBarberConsultant: React.FC = () => {
           responseSchema: {
             type: Type.OBJECT,
             properties: {
-              faceShape: { type: Type.STRING, description: "The detected face shape in Spanish" },
+              faceShape: { type: Type.STRING, description: "Forma de cara detectada (ej: Ovalada, Cuadrada)" },
               recommendations: {
                 type: Type.ARRAY,
                 items: {
                   type: Type.OBJECT,
                   properties: {
-                    name: { type: Type.STRING, description: "Name of the haircut" },
-                    explanation: { type: Type.STRING, description: "Why it works for this face shape" },
-                    barberInstruction: { type: Type.STRING, description: "What to tell the barber to get this cut" }
+                    name: { type: Type.STRING, description: "Nombre del corte de cabello" },
+                    explanation: { type: Type.STRING, description: "Por qué favorece al usuario" },
+                    barberInstruction: { type: Type.STRING, description: "Instrucción corta para el barbero" }
                   },
                   required: ["name", "explanation", "barberInstruction"]
-                }
+                },
+                minItems: 3,
+                maxItems: 3
               }
             },
             required: ["faceShape", "recommendations"]
           },
-          systemInstruction: `Eres "El Chingón", barbero experto y consultor de estilo de Chingon Cuts Barber Shop en Socorro, Texas. Hablas con un tono confiado, amigable y callejero (street-smart), como un compa que sabe lo que hace.
-
-Si el usuario comparte una foto, DEBES:
-1. Identificar su forma de cara (oval, round, square, rectangle, diamond, or heart).
-2. Analizar su textura de cabello, grosor y longitud actual.
-3. Recomendar 3 estilos específicos que le queden mejor.
-
-Responde SIEMPRE en formato JSON. Usa Spanglish ocasionalmente en las explicaciones para mantener la vibra de la barbería.`
+          systemInstruction: `Eres "El Chingón", barbero experto de Chingon Cuts Barber Shop. 
+          Tu misión es analizar fotos de clientes y dar 3 recomendaciones de cortes.
+          
+          REGLAS CRÍTICAS:
+          1. Responde ÚNICAMENTE con el objeto JSON solicitado.
+          2. NO incluyas bloques de código Markdown (\`\`\`json).
+          3. NO incluyas texto antes o después del JSON.
+          4. Usa Spanglish urbano de Socorro, Texas en las explicaciones.
+          5. Si no hay foto, basa tus recomendaciones en el texto del cliente.`
         }
       });
       
-      const parsedResponse = JSON.parse(result.text);
+      if (!result.text) {
+        throw new Error("La IA no devolvió contenido.");
+      }
+
+      const cleanJson = result.text.replace(/```json|```/g, "").trim();
+      const parsedResponse = JSON.parse(cleanJson);
       setAiData(parsedResponse);
-    } catch (err) {
-      console.error(err);
-      setError('Lo siento carnal, el sistema está saturado o hubo un error. Intenta de nuevo.');
+    } catch (err: any) {
+      console.error("Gemini Error:", err);
+      if (err.message?.includes("429")) {
+        setError("Carnal, la IA está a full ahorita. Espérate un minuto y dale otra vez.");
+      } else if (err.message?.includes("JSON")) {
+        setError("Hubo un error al procesar la respuesta. Intenta de nuevo, porfa.");
+      } else {
+        setError("Ocurrió un error inesperado. Revisa tu conexión o intenta más tarde.");
+      }
     } finally {
       setLoading(false);
     }
