@@ -14,9 +14,9 @@ export const AIBarberConsultant: React.FC = () => {
     setResponse('');
     
     try {
-      const ai = new GoogleGenerativeAI(import.meta.env.VITE_GOOGLE_API_KEY);
+      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
       const result = await ai.models.generateContent({
-        model: 'gemini-1.5-flash',
+        model: 'gemini-3-flash-preview',
         contents: `Eres un barbero experto de "CHINGON CUHT'S". Un cliente te pregunta: "${prompt}". 
         Responde con consejos de estilo profesionales, amigables y con mucha personalidad texana/barber shop. 
         Mantén la respuesta concisa y sugiere 2 tipos de cortes específicos que hacemos (Fades, Tapers, Mullets modernos, Pompadours).`,

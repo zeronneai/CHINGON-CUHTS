@@ -15,21 +15,21 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking }) => {
   return (
     <section className="relative pt-32 pb-20 px-4 overflow-hidden">
       <div className="max-w-[1180px] mx-auto relative z-10">
-        <div className="max-w-2xl mx-auto lg:mx-0 flex flex-col items-center lg:items-start text-center lg:text-left">
+        <div className="max-w-2xl">
           <div className="mb-4">
-           <h1 className="font-display text-6xl md:text-8xl text-white uppercase italic tracking-tighter leading-none text-center lg:text-left">
+            <h1 className="font-display text-6xl md:text-8xl text-white uppercase italic tracking-tighter leading-none">
               OPEN <span className="text-neon">7</span> DAYS
             </h1>
           </div>
           
           <img 
-           className="hero-logo mb-8 h-auto w-full max-w-[280px] md:max-w-[360px] lg:max-w-[460px] mx-auto lg:mx-0"
+            className="hero-logo mb-8 h-auto w-full max-w-[280px] md:max-w-[360px] lg:max-w-[460px]" 
             src="https://i.imgur.com/xwNC6AC.png" 
             alt="CHINGON CUHTS logo" 
           />
           
           <p className="text-muted text-lg md:text-xl max-w-lg mb-12">
-            Elevando el estándar en El Paso. Fades limpios, tapers precisos y diseño de barba con la mejor vibra de Texas.
+            Elevando el estándar en Socorro. Fades limpios, tapers precisos y diseño de barba con la mejor vibra de Texas.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 items-start">
@@ -57,10 +57,13 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking }) => {
       {/* Background Graphic elements */}
       <div className="absolute top-1/2 right-0 -translate-y-1/2 w-1/2 h-full hidden lg:block pointer-events-none">
         <div className="relative w-full h-full">
-           <img 
-            src="https://res.cloudinary.com/dsprn0ew4/image/upload/v1769029959/BARBER_kevfkk.jpg" 
-            alt="Barber Shop Interior" 
-            className="w-full h-full object-cover rounded-l-[100px] border-l border-y border-white/10 opacity-60 mix-blend-screen grayscale"
+          <video 
+            src="https://res.cloudinary.com/dsprn0ew4/video/upload/v1773251093/chingoncuhts_zs3k7x.mp4" 
+            autoPlay 
+            loop 
+            muted 
+            playsInline
+            className="w-full h-full object-cover rounded-l-[100px] border-l border-y border-white/10 opacity-70"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-bg via-transparent to-transparent"></div>
         </div>
