@@ -31,7 +31,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
 
         <div className="hidden md:flex items-center gap-8 text-sm font-semibold text-muted">
           <a href="#services" onClick={scrollTo('services')} className="hover:text-white transition-colors">Servicios</a>
-          <a href="#ai-advisor" onClick={scrollTo('ai-advisor')} className="hover:text-white transition-colors">AI Barber</a>
           <a href="#portfolio" onClick={scrollTo('portfolio')} className="hover:text-white transition-colors">Galería</a>
           <a 
             href="#giftcard" 

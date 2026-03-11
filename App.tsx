@@ -3,7 +3,6 @@ import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { Services } from './components/Services';
 import { Gallery } from './components/Gallery';
-import { AIBarberConsultant } from './components/AIBarberConsultant';
 import { Footer } from './components/Footer';
 import { BookingFlow } from './components/BookingFlow';
 
@@ -30,10 +29,6 @@ const App: React.FC = () => {
         
         <section id="services" className="py-24">
           <Services onSelectService={(serviceName) => openBooking(serviceName)} />
-        </section>
-
-        <section id="ai-advisor" className="py-24 bg-bg2/50 border-y border-white/5">
-          <AIBarberConsultant />
         </section>
 
         <section id="portfolio" className="py-24">
