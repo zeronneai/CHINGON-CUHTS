@@ -1,10 +1,21 @@
 
 import React, { useState, useRef, useEffect } from 'react';
-import { GoogleGenAI } from "@google/genai";
+import { GoogleGenAI, Type } from "@google/genai";
+
+interface Recommendation {
+  name: string;
+  explanation: string;
+  barberInstruction: string;
+}
+
+interface AIResponse {
+  faceShape: string;
+  recommendations: Recommendation[];
+}
 
 export const AIBarberConsultant: React.FC = () => {
   const [prompt, setPrompt] = useState('');
-  const [response, setResponse] = useState('');
+  const [aiData, setAiData] = useState<AIResponse | null>(null);
   const [loading, setLoading] = useState(false);
   const [isCameraOpen, setIsCameraOpen] = useState(false);
   const [capturedImage, setCapturedImage] = useState<string | null>(null);
@@ -59,7 +70,7 @@ export const AIBarberConsultant: React.FC = () => {
 
   const handleConsult = async () => {
     setLoading(true);
-    setResponse('');
+    setAiData(null);
     setError(null);
     
     try {
@@ -95,26 +106,39 @@ export const AIBarberConsultant: React.FC = () => {
         model: 'gemini-3-flash-preview',
         contents: contents,
         config: {
+          responseMimeType: "application/json",
+          responseSchema: {
+            type: Type.OBJECT,
+            properties: {
+              faceShape: { type: Type.STRING, description: "The detected face shape in Spanish" },
+              recommendations: {
+                type: Type.ARRAY,
+                items: {
+                  type: Type.OBJECT,
+                  properties: {
+                    name: { type: Type.STRING, description: "Name of the haircut" },
+                    explanation: { type: Type.STRING, description: "Why it works for this face shape" },
+                    barberInstruction: { type: Type.STRING, description: "What to tell the barber to get this cut" }
+                  },
+                  required: ["name", "explanation", "barberInstruction"]
+                }
+              }
+            },
+            required: ["faceShape", "recommendations"]
+          },
           systemInstruction: `Eres "El Chingón", barbero experto y consultor de estilo de Chingon Cuts Barber Shop en Socorro, Texas. Hablas con un tono confiado, amigable y callejero (street-smart), como un compa que sabe lo que hace.
 
 Si el usuario comparte una foto, DEBES:
 1. Identificar su forma de cara (oval, round, square, rectangle, diamond, or heart).
 2. Analizar su textura de cabello, grosor y longitud actual.
-3. Recomendar 2-3 estilos específicos que le queden mejor.
+3. Recomendar 3 estilos específicos que le queden mejor.
 
-FORMATO DE RESPUESTA:
-👤 Face Shape: [forma detectada]
-✂️ Recommended Cuts:
-1. [Nombre del corte] — [explicación de por qué funciona]
-2. [Nombre del corte] — [explicación]
-3. [Nombre del corte] — [explicación]
-💬 What to tell your barber: "[palabras exactas para pedirlo]"
-
-Mantén la respuesta bajo 200 palabras. Sé hype pero útil. Usa Spanglish ocasionalmente.`
+Responde SIEMPRE en formato JSON. Usa Spanglish ocasionalmente en las explicaciones para mantener la vibra de la barbería.`
         }
       });
       
-      setResponse(result.text || 'Ocurrió un error al obtener la recomendación.');
+      const parsedResponse = JSON.parse(result.text);
+      setAiData(parsedResponse);
     } catch (err) {
       console.error(err);
       setError('Lo siento carnal, el sistema está saturado o hubo un error. Intenta de nuevo.');
@@ -232,11 +256,34 @@ Mantén la respuesta bajo 200 palabras. Sé hype pero útil. Usa Spanglish ocasi
               <p className="text-red-400 text-sm font-medium text-center">{error}</p>
             )}
 
-            {response && (
-              <div className="mt-8 p-6 bg-black/40 backdrop-blur-xl rounded-2xl border border-neon/20 animate-in fade-in slide-in-from-bottom-4 duration-500">
-                <p className="text-neon text-xs font-bold uppercase tracking-widest mb-3">EL CHINGÓN DICE:</p>
-                <div className="text-white leading-relaxed text-lg whitespace-pre-line font-medium">
-                  {response}
+            {aiData && (
+              <div className="mt-12 space-y-8 animate-in fade-in slide-in-from-bottom-8 duration-700">
+                <div className="text-center">
+                  <span className="inline-block px-4 py-1 rounded-full bg-neon/10 border border-neon/30 text-neon text-xs font-bold uppercase tracking-widest mb-2">
+                    Face Shape: {aiData.faceShape}
+                  </span>
+                  <h3 className="text-2xl font-display text-white uppercase tracking-tight">El Chingón Recomienda:</h3>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  {aiData.recommendations.map((rec, idx) => (
+                    <div 
+                      key={idx} 
+                      className="group bg-black/40 backdrop-blur-xl rounded-2xl border border-white/5 p-6 hover:border-neon/30 transition-all duration-300 flex flex-col"
+                    >
+                      <div className="w-8 h-8 rounded-lg bg-neon/10 flex items-center justify-center text-neon font-bold mb-4 group-hover:bg-neon group-hover:text-black transition-colors">
+                        {idx + 1}
+                      </div>
+                      <h4 className="text-xl font-bold text-white mb-3">{rec.name}</h4>
+                      <p className="text-muted text-sm leading-relaxed mb-6 flex-grow">
+                        {rec.explanation}
+                      </p>
+                      <div className="mt-auto pt-4 border-t border-white/5">
+                        <p className="text-[10px] text-neon font-bold uppercase tracking-widest mb-1">Dile a tu barbero:</p>
+                        <p className="text-white text-xs italic">"{rec.barberInstruction}"</p>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
             )}
