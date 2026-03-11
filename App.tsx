@@ -80,8 +80,17 @@ const App: React.FC = () => {
             <div className="rounded-[28px] overflow-hidden neon-border bg-card p-8 shadow-2xl">
               <p className="text-2xl font-bold mb-4">Socorro, Texas</p>
               <p className="text-muted text-lg mb-8">El mejor servicio de barbería en el área. Elevando el estilo de nuestra comunidad.</p>
-              <div className="aspect-video w-full rounded-2xl bg-black/40 flex items-center justify-center border border-white/5">
-                <span className="text-muted italic">Google Maps Integration Coming Soon...</span>
+              <div className="aspect-video w-full rounded-2xl overflow-hidden border border-white/5 shadow-inner">
+                <iframe 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3395.6259797792336!2d-106.283705!3d31.67145099999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86e74376b8ff7fcd%3A0xd546f1d6ffe99092!2sChingon%20Cuh&#39;ts%20Barber%20Shop!5e0!3m2!1ses-419!2smx!4v1773251881259!5m2!1ses-419!2smx" 
+                  width="100%" 
+                  height="100%" 
+                  style={{ border: 0 }} 
+                  allowFullScreen={true} 
+                  loading="lazy" 
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Chingon Cuhts Location"
+                ></iframe>
               </div>
             </div>
           </div>

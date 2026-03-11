@@ -55,7 +55,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking }) => {
       </div>
 
       {/* Background Graphic elements */}
-      <div className="absolute top-1/2 right-0 -translate-y-1/2 w-1/2 h-full hidden lg:block pointer-events-none">
+      <div className="absolute inset-0 lg:left-1/2 lg:w-1/2 h-full pointer-events-none overflow-hidden">
         <div className="relative w-full h-full">
           <video 
             src="https://res.cloudinary.com/dsprn0ew4/video/upload/v1773251093/chingoncuhts_zs3k7x.mp4" 
@@ -63,9 +63,11 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking }) => {
             loop 
             muted 
             playsInline
-            className="w-full h-full object-cover rounded-l-[100px] border-l border-y border-white/10 opacity-70"
+            className="w-full h-full object-cover opacity-30 lg:opacity-70 lg:rounded-l-[100px] lg:border-l lg:border-y lg:border-white/10"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-bg via-transparent to-transparent"></div>
+          {/* Gradient Overlays */}
+          <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/80 to-bg/40 lg:hidden"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-bg via-bg/20 to-transparent hidden lg:block"></div>
         </div>
       </div>
     </section>
