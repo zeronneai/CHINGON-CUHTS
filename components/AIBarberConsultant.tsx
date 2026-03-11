@@ -75,7 +75,12 @@ export const AIBarberConsultant: React.FC = () => {
     setError(null);
     
     try {
-      const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+      const apiKey = process.env.GEMINI_API_KEY;
+      if (!apiKey) {
+        throw new Error("API Key no encontrada. Asegúrate de que GEMINI_API_KEY esté configurada en el entorno.");
+      }
+      
+      const ai = new GoogleGenAI({ apiKey });
       
       let contents: any;
 
