@@ -39,6 +39,20 @@ export const BookingFlow: React.FC<BookingFlowProps> = ({ initialService, onClos
   }, [initialService]);
 
   const handleFinish = () => {
+    const phoneNumber = '19152343655';
+    const message = `¡Hola! Quisiera agendar una cita en Chingon Cuhts:
+💈 Servicio: ${selectedService}
+✂️ Barbero: ${barber}
+📅 Día: ${date}
+⏰ Hora: ${time}
+
+¡Gracias!`;
+
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    
+    // Open WhatsApp
+    window.open(whatsappUrl, '_blank');
+
     setIsConfirmed(true);
     setTimeout(() => {
       onClose();

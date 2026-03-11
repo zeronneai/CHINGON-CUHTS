@@ -38,19 +38,19 @@ const App: React.FC = () => {
         <section id="giftcard" className="py-24 bg-bg2/30">
           <div className="max-w-[1180px] mx-auto px-4">
             <div className="flex flex-col lg:flex-row items-center gap-12">
-              <div className="flex-1 space-y-8">
+              <div className="flex-1 space-y-8 flex flex-col items-center lg:items-start text-center lg:text-left">
                 <div>
                   <h2 className="font-display text-5xl md:text-6xl uppercase tracking-widest text-white mb-4">Gift a Fresh Cut</h2>
                   <p className="text-muted text-xl">Perfect for birthdays, holidays, and special occasions.</p>
                 </div>
                 
-                <div className="space-y-4 bg-card/50 p-8 rounded-[32px] neon-border">
+                <div className="space-y-4 bg-card/50 p-8 rounded-[32px] neon-border w-full">
                   <p className="text-xl md:text-2xl text-white font-medium">🔥 Fresh Cut Gift Card — $25</p>
                   <p className="text-xl md:text-2xl text-white font-medium">💈 Cut + Beard Gift Card — $40</p>
                   <p className="text-xl md:text-2xl text-white font-medium italic">👑 VIP CHINGON Package — $60 <span className="text-xs text-muted block md:inline md:ml-2">(corte + barba + ceja + toalla/caliente)</span></p>
                 </div>
 
-                <button className="bg-neon text-black font-black text-xl px-12 py-5 rounded-2xl hover:scale-105 active:scale-95 transition-all shadow-[0_10px_40px_rgba(57,255,20,0.3)]">
+                <button className="bg-neon text-black font-black text-xl px-12 py-5 rounded-2xl hover:scale-105 active:scale-95 transition-all shadow-[0_10px_40px_rgba(57,255,20,0.3)] mx-auto lg:mx-0">
                   BUY GIFT CARD
                 </button>
               </div>
