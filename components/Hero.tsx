@@ -15,7 +15,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking }) => {
   return (
     <section className="relative pt-32 pb-20 px-4 overflow-hidden">
       <div className="max-w-[1180px] mx-auto relative z-10">
-        <div className="max-w-2xl">
+        <div className="max-w-2xl flex flex-col items-center text-center sm:items-start sm:text-left mx-auto sm:mx-0">
           <div className="mb-4">
             <h1 className="font-display text-6xl md:text-8xl text-white uppercase italic tracking-tighter leading-none">
               OPEN <span className="text-neon">7</span> DAYS
@@ -32,7 +32,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking }) => {
             Elevando el estándar en Socorro. Fades limpios, tapers precisos y diseño de barba con la mejor vibra de Texas.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 items-start">
+          <div className="flex flex-col sm:flex-row gap-4 items-center sm:items-start w-full sm:w-auto">
             <div className="flex flex-col items-center sm:items-start w-full sm:w-auto">
               <button 
                 onClick={onOpenBooking}
@@ -63,10 +63,10 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking }) => {
             loop 
             muted 
             playsInline
-            className="w-full h-full object-cover opacity-30 lg:opacity-70 lg:rounded-l-[100px] lg:border-l lg:border-y lg:border-white/10"
+            className="w-full h-full object-cover opacity-50 lg:opacity-70 lg:rounded-l-[100px] lg:border-l lg:border-y lg:border-white/10"
           />
           {/* Gradient Overlays */}
-          <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/80 to-bg/40 lg:hidden"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-bg/80 via-bg/40 to-transparent lg:hidden"></div>
           <div className="absolute inset-0 bg-gradient-to-r from-bg via-bg/20 to-transparent hidden lg:block"></div>
         </div>
       </div>
